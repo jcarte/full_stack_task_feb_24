@@ -1,6 +1,17 @@
-# Tasks
+# How to run
+## Backend
+`cd .\backend`
 
-- [ ] BE - Output only dummy json from an endpoint
+`npm run dev`
+
+## Frontend
+`cd .\frontend`
+
+`npm run start`
+
+
+# Tasks
+- [x] BE - Output only dummy json from an endpoint
 - [ ] FE - Get data from express
 - [ ] Data - Python load in small data, combine, output json locally
 - [ ] BE - Simple search local file
