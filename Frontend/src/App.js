@@ -4,7 +4,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import * as React from 'react';
+import React, {useState} from 'react';
 
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -17,8 +17,42 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
 function App() {
+  console.log("Start")
+  var industry = "";
 
-var industry = "";
+  const [results, setResults] = useState([]);
+
+  const submitSearch = () => {
+
+    var dummyData = {
+          "CompanyName": "Trumpet Software Limited",
+          "Industry": "SaaS, Sales Automation",
+          "SalesTarget": "B2B",
+          "Description": "Our company is a digital platform that provides personalized and interactive sales solutions. We offer tools for creating digital sales rooms, enabling businesses to centralize their buyer journeys, track engagement, and streamline marketing and sales processes. Our platform also offers features for auto-personalizing content and real-time notifications, aiming to reduce sales cycle times and increase revenue.",
+      }
+
+    fetch("http://localhost:3001", 
+      {
+          method: "POST", 
+          body: JSON.stringify(dummyData),
+          mode: 'cors',
+          headers: {
+              'Content-Type': 'application/json',
+          }
+      })
+      .then((res) => {
+        console.log("got results")
+        return res.json()
+      })
+      .then((json) => {
+        console.log(`json: ${json}`)
+        setResults(json)
+      })
+      .catch(rejected => {
+        console.log(rejected);
+    });
+
+  }
 
   return (
     <div className="App">
@@ -63,7 +97,8 @@ var industry = "";
 
           <TextField id="description" label="Description" variant="outlined" />
 
-          <Button id="submit" variant="contained">Submit</Button>
+          <Button id="submit" variant="contained" onClick={submitSearch}>Submit</Button>
+          <p>{results.test}</p>
         
         {/* <a
           className="App-link"

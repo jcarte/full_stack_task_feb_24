@@ -12,7 +12,7 @@
 
 # Tasks
 - [x] BE - Output only dummy json from an endpoint
-- [ ] FE - Get data from express
+- [x] FE - Get data from express
 - [ ] Data - Python load in small data, combine, output json locally
 - [ ] BE - Simple search local file
 - [ ] FE - Show data in table
