@@ -1,4 +1,10 @@
 # How to run
+
+## Data
+`cd .\data`
+
+`python .\refresh-data.py`
+
 ## Backend
 `cd .\backend`
 
