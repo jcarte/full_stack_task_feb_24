@@ -1,0 +1,1366 @@
+{
+    "total": 3221,
+    "rows": [
+        {
+            "content": {
+                "fine": {},
+                "text": {},
+                "appeal_to": {},
+                "applied_laws": {}
+            },
+            "wiki": {}
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "Lithuanian DPA imposes a fine of EUR 15.000,00 for a failure to implement sufficient technical and organizational measures with regards to education procedures of an adopted child."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Lithuania",
+                "jurisdiction_abbr": "LT",
+                "dpa": "VDAI (Lithuania)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "fine": {
+                    "amount": "15000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "Vilnius City Municipality Administration",
+                        "url": "https://vilnius.lt/en/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "Lithuanian DPA (VDAI) Press release",
+                        "url": "https://vdai.lrv.lt/lt/news/view_item/id.143",
+                        "language": "Lithuanian"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "d"
+                        },
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "f"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "appeal_to": {
+                    "status": "Unknown"
+                },
+                "initial_contributor": "Linas Mockevicius"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=VDAI_-_N/A",
+                "title": "VDAI - N/A",
+                "page_id": 2744
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Lithuanian DPA (VDAI) imposed two fines after investigating the Quarantine App launched by the National Center for Public Health in cooperation with UAB IT Solutions Success. The National Center for Public Health was fined €12,000 for breaching Articles 5, 13, 24, 32, 35 and 58(2)(f) GDPR. UAB IT Solutions Success was fined €3,000 for violating Articles 5, 13, 24, 32 and 35 GDPR."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Lithuania",
+                "jurisdiction_abbr": "LT",
+                "case_nr_name": "Quarantine App (\"Karantinas\")",
+                "dpa": "VDAI (Lithuania)",
+                "decision_type": "Investigation",
+                "outcome": "Violation Found",
+                "date_published": "2021-02-26 00:00:00 UTC",
+                "fine": {
+                    "amount": "15000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "Nacionaliniam visuomenės sveikatos centrui (NVSC)",
+                        "url": "https://nvsc.lrv.lt/"
+                    },
+                    {
+                        "name": "UAB „IT sprendimai sėkmei“ (Company)"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "Valstybinė duomenų apsaugos inspekcija",
+                        "url": "https://vdai.lrv.lt/lt/naujienos/skirta-bauda-del-bendrojo-duomenu-apsaugos-reglamento-pazeidimu-programeleje-karantinas",
+                        "language": "Lithuanian"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "5"
+                        },
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "a"
+                        },
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "f"
+                        },
+                        {
+                            "article": "13"
+                        },
+                        {
+                            "article": "24"
+                        },
+                        {
+                            "article": "32"
+                        },
+                        {
+                            "article": "35"
+                        },
+                        {
+                            "article": "58",
+                            "paragraph": "2",
+                            "subparagraph": "f"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=VDAI_-_NVSC_vs_UAB",
+                "title": "VDAI - NVSC vs UAB",
+                "page_id": 3186
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Lithuanian State Data Protection Inspectorate (VDAI) imposed a fine of €15,000 on the Center of Registers (VĮ Registrų centras) for improper implementation of technical and organizational data security measures."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Lithuania",
+                "jurisdiction_abbr": "LT",
+                "case_nr_name": "VĮ Registrų centras",
+                "dpa": "VDAI (Lithuania)",
+                "decision_type": "Investigation",
+                "outcome": "Violation Found",
+                "date_published": "2021-03-02 00:00:00 UTC",
+                "fine": {
+                    "amount": "15000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "VĮ Registrų centras",
+                        "url": "https://www.registrucentras.lt/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "Valstybinė duomenų apsaugos inspekcija ",
+                        "url": "https://vdai.lrv.lt/lt/naujienos/skirta-bauda-del-bendrojo-duomenu-apsaugos-reglamento-pazeidimu-registru-centre",
+                        "language": "Lithuanian"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "32",
+                            "paragraph": "1",
+                            "subparagraph": "b"
+                        },
+                        {
+                            "article": "32",
+                            "paragraph": "1",
+                            "subparagraph": "c"
+                        },
+                        {
+                            "article": "83",
+                            "paragraph": "2",
+                            "subparagraph": "a"
+                        },
+                        {
+                            "article": "83",
+                            "paragraph": "2",
+                            "subparagraph": "d"
+                        },
+                        {
+                            "article": "83",
+                            "paragraph": "2",
+                            "subparagraph": "g"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "appeal_to": {
+                    "status": "Unknown"
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=ADA_-_V%C4%AE_Registr%C5%B3_centras",
+                "title": "ADA - VĮ Registrų centras",
+                "page_id": 3209
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Swedish Labor Court ruled that a collective bargaining agreement requiring an employer to provide unredacted copies of employment certificates to a trade union did not conflict with the GDPR. The employer had to pay the union €4936 (SEK 50 000) for breaching the agreement."
+                },
+                "decider_type": "court",
+                "jurisdiction": "Sweden",
+                "jurisdiction_abbr": "SE",
+                "court": {
+                    "orig_abbr": "AD"
+                },
+                "case_nr_name": "AD 2021 nr 23",
+                "date_decided": "2020-09-20 00:00:00 UTC",
+                "date_published": "2021-05-26 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "Fiedler & Lundgren AB "
+                    },
+                    {
+                        "name": "Swedish Food Workers’ Union ",
+                        "url": "https://www.livs.se/"
+                    },
+                    {
+                        "name": "The Swedish Food Federation",
+                        "url": "https://www.livsmedelsforetagen.se/in-english/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "Decision",
+                        "url": "http://www.arbetsdomstolen.se/upload/pdf/2021/23-21.pdf",
+                        "language": "Swedish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "6",
+                            "paragraph": "1",
+                            "subparagraph": "c"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": [
+                        {
+                            "name": "Chaper 2, § 1 GDPR-implementation act",
+                            "url": "https://www.riksdagen.se/sv/dokument-lagar/dokument/svensk-forfattningssamling/lag-2018218-med-kompletterande-bestammelser_sfs-2018-218#K2P1"
+                        }
+                    ]
+                },
+                "initial_contributor": "Kave Noori"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AD_-_AD_2021_nr_23",
+                "title": "AD - AD 2021 nr 23",
+                "page_id": 3582
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA closed a procedure against the proprietor of a false camera installed in a public space because they did not process any personal data."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/00038/2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Rejected",
+                "date_published": "2021-12-07 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "B.B.B"
+                    },
+                    {
+                        "name": "C.C.C"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD (in ES)",
+                        "url": "https://www.aepd.es/es/documento/e-00038-2021.pdf ",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "c"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "appeal_to": {
+                    "status": "Unknown"
+                },
+                "initial_contributor": "Genoveva Gil"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/00038/2021",
+                "title": "AEPD (Spain) - E/00038/2021",
+                "page_id": 4449
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA referred a case to the Irish DPA regarding Facebook transfers of data to third parties. The Irish DPA rejected the case, since Ireland has not implemented Article 80(2) GDPR and the consumer organisation that brought the claim in Spain could therefore not act without an individual mandate."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/00647/2019 - CO/00198/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Rejected",
+                "date_published": "2021-11-18 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "FACEBOOK IRELAND LIMITED"
+                    },
+                    {
+                        "name": "FACUA - ASOCIACIÓN DE CONSUMIDORES Y USUARIOS EN ACCIÓN"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/co-00198-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "4",
+                            "paragraph": "16"
+                        },
+                        {
+                            "article": "4",
+                            "paragraph": "22"
+                        },
+                        {
+                            "article": "4",
+                            "paragraph": "23"
+                        },
+                        {
+                            "article": "60",
+                            "paragraph": "8"
+                        },
+                        {
+                            "article": "80",
+                            "paragraph": "2"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "initial_contributor": "Carmen Villarroel"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/00647/2019_-_CO/00198/2020",
+                "title": "AEPD (Spain) - E/00647/2019 - CO/00198/2020",
+                "page_id": 4356
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA carried out an investigation in response to a claim against Grindr by a human rights NGO, and found no violations of GDPR as to consent regarding processing of personal data for advertisement purposes or the processing of special categories of personal data."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/03624/2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Investigation",
+                "outcome": "No Violation Found",
+                "date_decided": "2022-01-17 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "Rights International Spain (RIS)",
+                        "url": "http://www.rightsinternationalspain.org/"
+                    },
+                    {
+                        "name": "GRINDR LLC",
+                        "url": "https://www.grindr.com/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-03624-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "a"
+                        },
+                        {
+                            "article": "6",
+                            "paragraph": "1",
+                            "subparagraph": "a"
+                        },
+                        {
+                            "article": "7"
+                        },
+                        {
+                            "article": "9",
+                            "paragraph": "1"
+                        },
+                        {
+                            "article": "12"
+                        },
+                        {
+                            "article": "13"
+                        },
+                        {
+                            "article": "22"
+                        },
+                        {
+                            "article": "61"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "initial_contributor": "Cesar Manso-Sayao"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/03624/2021",
+                "title": "AEPD (Spain) - E/03624/2021",
+                "page_id": 4539
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA found that an impact study carried out by the Spanish Government on daily commuting trends during the COVID-19 pandemic was carried out in compliance with the GDPR, since the Government had implemented appropriate measures  to prevent data misuse."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/03690/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Investigation",
+                "outcome": "No Violation Found",
+                "date_decided": "2021-04-20 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "Ministerio de Transportes, Movilidad y Agenda Urbana",
+                        "url": "https://www.mitma.gob.es/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-03690-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "89",
+                            "paragraph": "1"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/03690/2020",
+                "title": "AEPD (Spain) - E/03690/2020",
+                "page_id": 3468
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA held that the monitoring of news and social networks by the Directorate for National Security and the Spanish police forces did not violate any data protection regulation, since no personal data had been processed."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/03783/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Investigation",
+                "outcome": "No Violation Found",
+                "date_published": "2021-05-04 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "Dirección General de la Guardia Civil"
+                    },
+                    {
+                        "name": "Ministerio del Interior"
+                    },
+                    {
+                        "name": "Secretaría de Estado de Seguridad"
+                    },
+                    {
+                        "name": "Secretaría de Estado de Seguridad del Ministerio del Interior"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-03783-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "2"
+                        }
+                    ],
+                    "eu": [
+                        {
+                            "name": "Directive (EU) 2016/680 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data by competent authorities for the purposes of the prevention, investigation, detection or prosecution of criminal offences or the execution of criminal penalties, and on the free movement of such data",
+                            "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016L0680"
+                        }
+                    ],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/03783/2020",
+                "title": "AEPD (Spain) - E/03783/2020",
+                "page_id": 3463
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA confirmed that the use of a thermal camera by private security guards to detect individuals' temperatures does does not fall under the scope of the GDPR when there is no further processing of the data shown by the camera, and the persons are not asked to identify themselves."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/03882/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Investigation",
+                "outcome": "No Violation Found",
+                "date_published": "2021-05-25 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "El Corte Inglés",
+                        "url": "http://www.elcorteingles.com/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-03882-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "4",
+                            "paragraph": "1"
+                        },
+                        {
+                            "article": "4",
+                            "paragraph": "2"
+                        },
+                        {
+                            "article": "4",
+                            "paragraph": "15"
+                        },
+                        {
+                            "article": "6"
+                        },
+                        {
+                            "article": "6",
+                            "paragraph": "1",
+                            "subparagraph": "c"
+                        },
+                        {
+                            "article": "9"
+                        },
+                        {
+                            "article": "9",
+                            "paragraph": "2",
+                            "subparagraph": "h"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": [
+                        {
+                            "name": "Law 31/ 1995 of 8 November on Prevention of Occupational Risks",
+                            "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292"
+                        }
+                    ]
+                },
+                "appeal_to": {
+                    "status": "Unknown"
+                },
+                "initial_contributor": "Óscar Jacobo"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/03882/2020",
+                "title": "AEPD (Spain) - E/03882/2020",
+                "page_id": 3520
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA concluded that the use of a thermal camera to verify if users of a service have a higher temperature than a certain threshold, in the context of the COVID-19 pandemic, does not fall under the scope of the GDPR when there is no further storing, processing or any operation on the data shown by the camera, and the persons are not asked to identify themselves."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/03884/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Investigation",
+                "outcome": "No Violation Found",
+                "date_published": "2021-05-24 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "METRO BILBAO, S.A."
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-03884-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "2",
+                            "paragraph": "1"
+                        },
+                        {
+                            "article": "4",
+                            "paragraph": "1"
+                        },
+                        {
+                            "article": "4",
+                            "paragraph": "6"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/03884/2020",
+                "title": "AEPD (Spain) - E/03884/2020",
+                "page_id": 3502
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "In a case regarding the processing of sexual images by a sex webcam website, the Spanish DPA concluded that by ticking a box attesting that they agreed with the controller's terms and conditions, the data subject had handed over the rights to their image to the controller, which thus had a legal basis for processing."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/03932/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Rejected",
+                "date_published": "2021-04-30 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "CAM4"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-03932-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "6",
+                            "paragraph": "1"
+                        },
+                        {
+                            "article": "6",
+                            "paragraph": "1",
+                            "subparagraph": "a"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "initial_contributor": "CSO"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/03932/2020",
+                "title": "AEPD (Spain) - E/03932/2020",
+                "page_id": 3464
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA forwarded a complaint by a data subject regarding a public Facebook page that was created without their consent and disclosed their personal data (name, surname, address) to the Irish DPA. When they tried to delete it, the company requested that they prove their identity by providing even more personal data."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/05270/2018 – E/08416/2018",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Other Outcome",
+                "parties": [
+                    {
+                        "name": "Facebook "
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-08416-2018.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "6"
+                        },
+                        {
+                            "article": "17"
+                        },
+                        {
+                            "article": "56"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/05270/2018_%E2%80%93_E/08416/2018",
+                "title": "AEPD (Spain) - E/05270/2018 – E/08416/2018",
+                "page_id": 4313
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA considered that the software developer of the interactive, real-location game 'Pokemon Go', had implemented adequate measures to mitigate the risks stemming from the fact malicious users could fake their location, and misuse the location data of other users."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/09208/2018",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Rejected",
+                "date_published": "2021-05-18 00:00:00 UTC",
+                "parties": [
+                    {
+                        "name": "Niantic, Inc."
+                    },
+                    {
+                        "name": "Niantic International Limited"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-09208-2018.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "6"
+                        },
+                        {
+                            "article": "32"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/09208/2018",
+                "title": "AEPD (Spain) - E/09208/2018",
+                "page_id": 3490
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA held that, in the context of the Covid-19 pandemic, the registration of a data subject’s ID by a police officer, using a photograph taken with a cellphone owned by the police unit, did not violate the GDPR."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "E/13223/2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Rejected",
+                "date_published": "2022-02-03 00:00:00 UTC",
+                "date_started": "2021-05-03 00:00:00 UTC",
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/e-13223-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "5"
+                        },
+                        {
+                            "article": "32"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": [
+                        {
+                            "name": "Ley Orgánica 4/2015 de protección de la seguridad ciudadana",
+                            "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-3442"
+                        },
+                        {
+                            "name": "Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales.",
+                            "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673"
+                        }
+                    ]
+                },
+                "initial_contributor": "Jennifer Vidal"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_E/13223/2021",
+                "title": "AEPD (Spain) - E/13223/2021",
+                "page_id": 4647
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA fined Vodafone €3,940,000 for violating Articles 5(1)(f) and 5(2) GDPR by not implementing appropriate security measures to prevent fraudulent replication of SIM cards, or being able to provide proof thereof."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS-00001-2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_published": "2022-02-01 00:00:00 UTC",
+                "fine": {
+                    "amount": "3940000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "VODAFONE ESPAÑA, S.A.U."
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00001-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "f"
+                        },
+                        {
+                            "article": "5",
+                            "paragraph": "2"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "initial_contributor": "Carmen Villarroel"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00001/2021",
+                "title": "AEPD (Spain) - PS/00001/2021",
+                "page_id": 4582
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA (AEPD) fined a radio station €2000 (reduced to €1200) for failing to provide a link to its cookie policy in their cookie banner and for installing cookies that are not strictly necessary on user devices without obtaining prior consent."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS-00118-2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_decided": "2021-06-07 00:00:00 UTC",
+                "date_published": "2021-06-16 00:00:00 UTC",
+                "fine": {
+                    "amount": "1200",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "Radio Popular S.A."
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00118-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [],
+                    "eu": [],
+                    "national_other": [
+                        {
+                            "name": "Article 22.2 of the Act on Information Society Services and Electronic Commerce",
+                            "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758"
+                        }
+                    ]
+                },
+                "appeal_to": {
+                    "status": "Not appealed"
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00118/2021",
+                "title": "AEPD (Spain) - PS/00118/2021",
+                "page_id": 3579
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA fined Telefónica €75,000 (reduced to €45,000) for violating Article 6(1) GDPR, by creating a contract containing the complainant's personal data without a legal basis."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS-00135-2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_decided": "2021-05-19 00:00:00 UTC",
+                "date_published": "2021-05-25 00:00:00 UTC",
+                "fine": {
+                    "amount": "75000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "Telefónica España, S.A.U.",
+                        "url": "https://www.telefonica.com/en/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00135-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "6",
+                            "paragraph": "1"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "appeal_to": {
+                    "status": "Not appealed"
+                },
+                "initial_contributor": "Paola León"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00135/2021",
+                "title": "AEPD (Spain) - PS/00135/2021",
+                "page_id": 3514
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA fined a controller €40,000 (reduced to €24,000) for including a data subject in a credit information system without verifying that the loan allegedly contracted by the data subject was valid or licit."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS-00487-2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_published": "2021-12-08 00:00:00 UTC",
+                "fine": {
+                    "amount": "40000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "NBQ TECHNOLOGY, S.A.U."
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00487-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "6",
+                            "paragraph": "1"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "initial_contributor": "Carmen Villarroel"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_EXP202100282",
+                "title": "AEPD (Spain) - EXP202100282",
+                "page_id": 4473
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA fined PageGroup Europe €300,000 for violating Articles 12 and 5(1)(c) GDPR, because it lacked an adequate procedure to comply with data subjects' rights, and required data subjects to provide additional identification documentation, without there being reasonable doubt regarding their identity."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS/00003/2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_published": "2022-02-25 00:00:00 UTC",
+                "date_started": "2018-12-23 00:00:00 UTC",
+                "fine": {
+                    "amount": "300000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "PageGroup Europe",
+                        "url": "https://www.page.com/"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00003-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "4",
+                            "paragraph": "16"
+                        },
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "c"
+                        },
+                        {
+                            "article": "12",
+                            "paragraph": "2"
+                        },
+                        {
+                            "article": "12",
+                            "paragraph": "3"
+                        },
+                        {
+                            "article": "12",
+                            "paragraph": "6"
+                        },
+                        {
+                            "article": "25"
+                        },
+                        {
+                            "article": "32"
+                        },
+                        {
+                            "article": "56",
+                            "paragraph": "1"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                },
+                "initial_contributor": "Jennifer Vidal"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00003/2021",
+                "title": "AEPD (Spain) - PS/00003/2021",
+                "page_id": 4759
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA fined Vodafone €100,000 for not ensuring that the processor they contracted with had implemented and continued to implement appropriate technical and organisational measures to ensure compliance with the GDPR."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS/00030/2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_decided": "2021-05-17 00:00:00 UTC",
+                "date_published": "2021-05-25 00:00:00 UTC",
+                "fine": {
+                    "amount": "100000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "Vodafone España, S.A.U."
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00030-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "28"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00030/2021",
+                "title": "AEPD (Spain) - PS/00030/2021",
+                "page_id": 3510
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA fined an airline €30,000 for not allowing their website's users to exercise a choice regarding cookies before placing them, as well as for not offering enough information about cookies and not allowing users to reject all cookies at once."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS/00032/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_decided": "2020-10-16 00:00:00 UTC",
+                "date_published": "2021-07-26 00:00:00 UTC",
+                "fine": {
+                    "amount": "30000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "IBERIA LÍNEAS AÉREAS DE ESPAÑA, S.A. OPERADORA UNIPERSONAL"
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00032-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [],
+                    "eu": [
+                        {
+                            "name": "Article 5(3) e-Privacy Directive",
+                            "url": "https://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:2002L0058:20091219:EN:HTML"
+                        }
+                    ],
+                    "national_other": [
+                        {
+                            "name": "Article 22(2) LSSI",
+                            "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758"
+                        }
+                    ]
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00032/2020",
+                "title": "AEPD (Spain) - PS/00032/2020",
+                "page_id": 3698
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA fined an energy company €1,500,000 for not providing sufficient information to data subjects under Article 13 GDPR, and for not implementing adequate measures to avoid or mitigate risks related to the data processing under Article 25 GDPR."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS/00037/2020",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "date_published": "2021-05-04 00:00:00 UTC",
+                "fine": {
+                    "amount": "1500000",
+                    "currency": "EUR"
+                },
+                "parties": [
+                    {
+                        "name": "EDP COMERCIALIZADORA, S.A.U."
+                    }
+                ],
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00037-2020.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "6"
+                        },
+                        {
+                            "article": "13"
+                        },
+                        {
+                            "article": "22"
+                        },
+                        {
+                            "article": "25"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": []
+                }
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00037/2020",
+                "title": "AEPD (Spain) - PS/00037/2020",
+                "page_id": 3458
+            }
+        },
+        {
+            "content": {
+                "text": {
+                    "summary": "The Spanish DPA issued a fine of €500 against an association of property owners for violating Article 5(1)(f) GDPR by posting the personal data of its members, including their debtor status, on a residential building's display board."
+                },
+                "decider_type": "dpa",
+                "jurisdiction": "Spain",
+                "jurisdiction_abbr": "ES",
+                "case_nr_name": "PS/00043/2021",
+                "dpa": "AEPD (Spain)",
+                "decision_type": "Complaint",
+                "outcome": "Upheld",
+                "fine": {
+                    "amount": "500",
+                    "currency": "EUR"
+                },
+                "sources": [
+                    {
+                        "name": "AEPD",
+                        "url": "https://www.aepd.es/es/documento/ps-00043-2021.pdf",
+                        "language": "Spanish"
+                    }
+                ],
+                "applied_laws": {
+                    "gdpr": [
+                        {
+                            "article": "5",
+                            "paragraph": "1",
+                            "subparagraph": "f"
+                        },
+                        {
+                            "article": "58",
+                            "paragraph": "2"
+                        },
+                        {
+                            "article": "83",
+                            "paragraph": "2"
+                        },
+                        {
+                            "article": "83",
+                            "paragraph": "5"
+                        }
+                    ],
+                    "eu": [],
+                    "national_other": [
+                        {
+                            "name": "Article 65, LOPDGDD",
+                            "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673"
+                        },
+                        {
+                            "name": "Articles 47, 48(1) LOPDGDD",
+                            "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673"
+                        }
+                    ]
+                },
+                "initial_contributor": "Jennifer Vidal Ferreira"
+            },
+            "wiki": {
+                "url": "https://gdprhub.eu/index.php?title=AEPD_(Spain)_-_PS/00043/2021",
+                "title": "AEPD (Spain) - PS/00043/2021",
+                "page_id": 4867
+            }
+        }
+    ]
+}
