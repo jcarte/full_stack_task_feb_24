@@ -1,9 +1,8 @@
 import json
 import pandas as pd
 import numpy as np
-
 from bs4 import BeautifulSoup
-
+from datetime import datetime
 
 def extract_all_links(html):
     """intake html string, returns array of all url links found inside."""
@@ -11,20 +10,22 @@ def extract_all_links(html):
     links = [link.get('href') for link in soup]
     return links
 
+
+"""
+    Prepares the EF data and returns a pandas dataframe.
+    Output Cols: 
+        ETid
+        ETdateOfDecision
+        ETfineEUR
+        ETcontrollerProcessor
+        ETsector
+        ETsummary
+        ETcountry
+        ETdirectURL
+        ETsources
+"""
 def getEnforcementTrackerDF(path):
-    """
-        Prepares the EF data and returns a pandas dataframe.
-        Output Cols: 
-            eTid
-            dateOfDecision
-            fineEUR
-            controllerProcessor
-            sector
-            summary
-            country
-            directURL
-            sources
-    """
+
 
     etFile = open(path)
     etData = json.load(etFile)
@@ -35,42 +36,49 @@ def getEnforcementTrackerDF(path):
     #give each col a name
     eCol = etDf.columns
     etDf = etDf.rename(columns={
-        eCol[0]: 'eTid',
-        eCol[1]: 'countryHTML',
-        eCol[2]: 'authority',
-        eCol[3]: 'dateOfDecision',
-        eCol[4]: 'fineEUR',
-        eCol[5]: 'controllerProcessor',
-        eCol[6]: 'sector',
-        eCol[7]: 'quotedArticles',
-        eCol[8]: 'type',
-        eCol[9]: 'summary',
-        eCol[10]: 'sourceHTML',
-        eCol[11]: 'directURLHTML'
+        eCol[0]: 'ETid',
+        eCol[1]: 'ETcountryHTML',
+        eCol[2]: 'ETauthority',
+        eCol[3]: 'ETdateOfDecision',
+        eCol[4]: 'ETfineEUR',
+        eCol[5]: 'ETcontrollerProcessor',
+        eCol[6]: 'ETsector',
+        eCol[7]: 'ETquotedArticles',
+        eCol[8]: 'ETtype',
+        eCol[9]: 'ETsummary',
+        eCol[10]: 'ETsourceHTML',
+        eCol[11]: 'ETdirectURLHTML'
         })
 
 
-    etDf['country'] = etDf['countryHTML'].apply(lambda x: x[(x.rindex('<br />')+6):]) #Just take the country name out of the html, if not found will return all of it except first 6 but its always populated
-    etDf['directURL'] = etDf['eTid'].apply(lambda x: 'https://www.enforcementtracker.com/' + x) #reconstruct direct url from id
-    etDf.loc[etDf['dateOfDecision'] == "Unknown", 'dateOfDecision'] = '' #Remove all unknown dates
-    etDf['fineEUR'] = etDf['fineEUR'].str.replace(',','').apply(pd.to_numeric, errors='coerce') #convert fine amount to number, if non numeric, turn to NAN
-    etDf['sources'] = pd.array(etDf['sourceHTML'].apply(lambda x: extract_all_links(x))) #extract just the links from the html
+    etDf['ETcountry'] = etDf['ETcountryHTML'].apply(lambda x: x[(x.rindex('<br />')+6):]) #Just take the country name out of the html, if not found will return all of it except first 6 but its always populated
+    etDf['ETdirectURL'] = etDf['ETid'].apply(lambda x: 'https://www.enforcementtracker.com/' + x) #reconstruct direct url from id
+    etDf['ETfineEUR'] = etDf['ETfineEUR'].str.replace(',','').apply(pd.to_numeric, errors='coerce') #convert fine amount to number, if non numeric, turn to NAN
+    etDf['ETsources'] = pd.array(etDf['ETsourceHTML'].apply(lambda x: extract_all_links(x))) #extract just the links from the html
 
-    etDf = etDf.drop(columns=['countryHTML','authority','quotedArticles','type','directURLHTML','sourceHTML']) #remove unused cols
+    #Simplies date to a day format, removes unknowns, months and years for simplicity - I ran out of time for this, I'd do a wide compare on year, month when merging later
+    timeFormat = '%Y-%m-%d'
+    etDf['ETdateOfDecision'] =  etDf['ETdateOfDecision'].apply(lambda x: datetime.strptime(x, timeFormat) if (len(x)==10 and x[4] =='-' and x[7] == '-') else np.NaN)
+
+    etDf = etDf.drop(columns=['ETcountryHTML','ETauthority','ETquotedArticles','ETtype','ETdirectURLHTML','ETsourceHTML']) #remove unused cols
     return etDf
 
 
+"""
+    Prepares the GH data and returns a pandas dataframe.
+    Output Cols:
+        GHsummary
+        GHcountry
+        GHdirectURL
+        GHid
+        GHfineAmount
+        GHfineCurrency
+        GHsources
+        GHpartiesCompanyName
+        GHdate
+"""
 def getGDPRHubDF(path):
-    """
-        Prepares the GH data and returns a pandas dataframe.
-        Output Cols:
-            summary
-            country
-            directURL
-            ghId
-            fineAmount
-            fineCurrency
-    """
+
     ghFile = open(GDPR_HUB_LOCAL_PATH, encoding="utf-8")
     ghData = json.load(ghFile)
     ghDf = pd.json_normalize(ghData, record_path="rows") #json has single property "rows" where array sits in
@@ -86,16 +94,33 @@ def getGDPRHubDF(path):
     ghDf['content.parties'] = ghDf['content.parties'].apply(lambda x: [] if x is np.NaN else x)#clean up array if any blanks
     ghDf['partiesCompanyName'] = ghDf['content.parties'].apply(lambda x: [y['name'] for y in x])#just take the name for each party
 
-    ghDf = ghDf[['content.text.summary','content.jurisdiction','wiki.url','wiki.page_id','content.fine.amount','content.fine.currency']]#only select column we need
+    #convert dates to datetime object - will NAT any "unknowns" but also removes just years and months which can't use to cast wide compare later - I ran out of time to do this properly but would later join based on same year/month
+    timeFormat = '%Y-%m-%d 00:00:00 UTC'
+    ghDf['date'] = ghDf.apply(lambda x: (np.NaN if x['content.date_published'] is np.NaN else datetime.strptime(x['content.date_published'], timeFormat)) if x['content.date_decided'] is np.NaN else datetime.strptime(x['content.date_decided'], timeFormat), axis=1)
+
+    ghDf = ghDf[[
+        'content.text.summary',
+        'content.date_decided', 
+        'content.jurisdiction',
+        'wiki.url','wiki.page_id',
+        'content.fine.amount',
+        'content.fine.currency',
+        'sources',
+        'partiesCompanyName',
+        'date'
+        ]]#only select column we need
 
     #rename cols so inline with other dataframe
     ghDf = ghDf.rename(columns={
-        'content.text.summary': 'summary',
-        'content.jurisdiction': 'country',
-        'wiki.url': 'directURL',
-        'content.fine.amount': 'fineAmount',
-        'content.fine.currency': 'fineCurrency',
-        'wiki.page_id': 'ghId'
+        'content.text.summary': 'GHsummary',
+        'content.jurisdiction': 'GHcountry',
+        'wiki.url': 'GHdirectURL',
+        'wiki.page_id': 'GHid',
+        'content.fine.amount': 'GHfineAmount',
+        'content.fine.currency': 'GHfineCurrency',
+        'sources': 'GHsources',
+        'partiesCompanyName': 'GHpartiesCompanyName',
+        'date': 'GHdate'
         })
 
     return ghDf
@@ -103,9 +128,7 @@ def getGDPRHubDF(path):
 
 
 
-
-
-#pd.show_versions()
+#setup pandas
 pd.set_option('display.max_columns', 25)
 pd.set_option('display.width', 170)
 pd.set_option('display.max_colwidth', 100)
@@ -118,8 +141,27 @@ GDPR_HUB_LOCAL_PATH = 'gdprhub_sample_download.json'
 etDf = getEnforcementTrackerDF(ENFORCEMENT_TRACKER_LOCAL_PATH)
 ghDf = getGDPRHubDF(GDPR_HUB_LOCAL_PATH)
 
+#Cut datasets just down to the info needed to join
+etDf2 = etDf[['ETid','ETsources', 'ETfineEUR', 'ETdateOfDecision', 'ETcountry' ]]
+ghDf2 = ghDf[['GHid','GHsources', 'GHfineAmount', 'GHfineCurrency', 'GHdate', 'GHcountry']]
+
+merged = etDf2.merge(ghDf2, how = 'cross') # cross join the lot
+
+merged['sourceMatch'] = merged.apply(lambda x: any([item in x['GHsources'] for item in x['ETsources']]) , axis=1) #are any of the sources in both lists?
+merged['fineMatch'] = merged.apply(lambda x: (x['GHfineCurrency'] == 'EUR') and (x['GHfineAmount'] == x['ETfineEUR']) , axis=1) #do they have the same fine amount?
+merged['dateMatch'] = merged.apply(lambda x: x['ETdateOfDecision'] == x['GHdate'] , axis=1) #are they on the same day? Would do a month/year comparison if had more time
+merged['countryMatch'] = merged.apply(lambda x: x['ETcountry'] == x['GHcountry'] , axis=1) #are they in the same country?
+
+merged = merged[merged['sourceMatch'] | ( merged['fineMatch'] & merged['dateMatch'] & merged['countryMatch']  )] #Cut down
+
+
+print(merged)
+
 #print (etDf)
 #print (ghDf)
+
+#print(df)
+
 
 print("Finished")
 
