@@ -4,6 +4,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 from datetime import datetime
 
+
 def extract_all_links(html):
     """intake html string, returns array of all url links found inside."""
     soup = BeautifulSoup(html, 'html.parser').find_all('a')
@@ -130,8 +131,8 @@ def getGDPRHubDF(path):
 
 #setup pandas
 pd.set_option('display.max_columns', 25)
-pd.set_option('display.width', 170)
-pd.set_option('display.max_colwidth', 100)
+pd.set_option('display.width', 180)
+pd.set_option('display.max_colwidth', 25)
 
 print("Starting")
 
@@ -142,20 +143,66 @@ etDf = getEnforcementTrackerDF(ENFORCEMENT_TRACKER_LOCAL_PATH)
 ghDf = getGDPRHubDF(GDPR_HUB_LOCAL_PATH)
 
 #Cut datasets just down to the info needed to join
-etDf2 = etDf[['ETid','ETsources', 'ETfineEUR', 'ETdateOfDecision', 'ETcountry' ]]
-ghDf2 = ghDf[['GHid','GHsources', 'GHfineAmount', 'GHfineCurrency', 'GHdate', 'GHcountry']]
+etDf2 = etDf[['ETid','ETsources']] #, 'ETfineEUR', 'ETdateOfDecision', 'ETcountry' ]]
+ghDf2 = ghDf[['GHid','GHsources']] #, 'GHfineAmount', 'GHfineCurrency', 'GHdate', 'GHcountry']]
 
-merged = etDf2.merge(ghDf2, how = 'cross') # cross join the lot
+intersectionDf = etDf2.merge(ghDf2, how = 'cross') # cross join on just the cols needed to join and the ids to outer join back
 
-merged['sourceMatch'] = merged.apply(lambda x: any([item in x['GHsources'] for item in x['ETsources']]) , axis=1) #are any of the sources in both lists?
-merged['fineMatch'] = merged.apply(lambda x: (x['GHfineCurrency'] == 'EUR') and (x['GHfineAmount'] == x['ETfineEUR']) , axis=1) #do they have the same fine amount?
-merged['dateMatch'] = merged.apply(lambda x: x['ETdateOfDecision'] == x['GHdate'] , axis=1) #are they on the same day? Would do a month/year comparison if had more time
-merged['countryMatch'] = merged.apply(lambda x: x['ETcountry'] == x['GHcountry'] , axis=1) #are they in the same country?
+intersectionDf['sourceMatch'] = intersectionDf.apply(lambda x: any([item in x['GHsources'] for item in x['ETsources']]) , axis=1) #are any of the sources in both lists?
+# intersectionDf['fineMatch'] = intersectionDf.apply(lambda x: (x['GHfineCurrency'] == 'EUR') and (x['GHfineAmount'] == x['ETfineEUR']) , axis=1) #do they have the same fine amount?
+# intersectionDf['dateMatch'] = intersectionDf.apply(lambda x: x['ETdateOfDecision'] == x['GHdate'] , axis=1) #are they on the same day? Would do a month/year comparison if had more time
+# intersectionDf['countryMatch'] = intersectionDf.apply(lambda x: x['ETcountry'] == x['GHcountry'] , axis=1) #are they in the same country?
 
-merged = merged[merged['sourceMatch'] | ( merged['fineMatch'] & merged['dateMatch'] & merged['countryMatch']  )] #Cut down
+#intersectionDf = intersectionDf[intersectionDf['sourceMatch'] | ( intersectionDf['fineMatch'] & intersectionDf['dateMatch'] & intersectionDf['countryMatch']  )] #Cut down
+intersectionDf = intersectionDf[intersectionDf['sourceMatch']]
+
+combinedDf = pd.merge(intersectionDf, etDf, on='ETid', how='outer')
+combinedDf = pd.merge(combinedDf, ghDf, on='GHid', how='outer')
+
+#replace nan with '' in string cols
+combinedDf[['GHsummary','ETsummary', 'ETsector', 'GHdirectURL', 'ETdirectURL']] = combinedDf[['GHsummary','ETsummary', 'ETsector', 'GHdirectURL', 'ETdirectURL']].fillna('')
+
+#replace nan with [] in list cols
+combinedDf['ETsources_x'] = [ [] if x is np.NaN else x for x in combinedDf['ETsources_x'] ]
+combinedDf['GHsources_x'] = [ [] if x is np.NaN else x for x in combinedDf['GHsources_x'] ]
+combinedDf['GHpartiesCompanyName'] = [ [] if x is np.NaN else x for x in combinedDf['GHpartiesCompanyName'] ]
+
+combinedDf['sources'] = combinedDf.apply(lambda x: list(set(x['ETsources_x']) | set(x['GHsources_x'])),axis=1)
+combinedDf['summary'] = combinedDf.apply(lambda x: x['GHsummary'] + x['ETsummary'],axis=1)
+
+combinedDf['fine_currency'] = combinedDf['GHfineCurrency'].fillna('EUR')
+combinedDf['fine_amount'] = combinedDf['ETfineEUR'].fillna(combinedDf['GHfineAmount'])
+
+combinedDf = combinedDf.rename(columns={
+    'GHdirectURL': 'gh_direct_url',
+    'ETdirectURL': 'et_direct_url',
+    'ETsector': 'sector',
+    'GHpartiesCompanyName': 'companies',
+    'GHid': 'gh_id',
+    'ETid': 'et_id'
+    })
+
+combinedDf = combinedDf[[
+    'gh_direct_url',
+    'et_direct_url',
+    'sources',
+    'companies',
+    'summary',
+    'fine_amount',
+    'fine_currency',
+    'sector',
+    'gh_id',
+    'et_id'
+    ]] #cut down to just the cols to output
+
+print(combinedDf)
+
+combinedDf.to_json('combined.json', orient='records')
+# etDf.to_json('etDf.json', orient='records')#, lines=True)
+# ghDf.to_json('ghDf.json', orient='records')#, lines=True)
 
 
-print(merged)
+#print(intersectionDf)
 
 #print (etDf)
 #print (ghDf)
