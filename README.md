@@ -19,9 +19,9 @@
 # Tasks
 - [x] BE - Output only dummy json from an endpoint
 - [x] FE - Get data from express
-- [ ] Data - Python load in small data, combine, output json locally
-- [ ] BE - Simple search local file
+- [x] Data - Python load in small data, combine, output json locally
 - [ ] FE - Show data in table
+- [ ] BE - Simple search local file
 - [ ] Data - Push to cloud
 - [ ] BE - Simple search cloud
 - [ ] BE - Complex search

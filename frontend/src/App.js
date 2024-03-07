@@ -98,7 +98,7 @@ function App() {
           <TextField id="description" label="Description" variant="outlined" />
 
           <Button id="submit" variant="contained" onClick={submitSearch}>Submit</Button>
-          <p>{results.test}</p>
+          <p>{JSON.stringify(results)}</p>
         
         {/* <a
           className="App-link"
