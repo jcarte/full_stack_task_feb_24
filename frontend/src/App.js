@@ -1,39 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import React, {useState} from 'react';
 
-import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
 
 
-function App() {
+
+import SearchComponent from './components/searchComponent'
+import ResultsComponent from './components/resultsComponent'
+
+
+export default function App() {
   console.log("Start")
-  var industry = "";
+
   
-
-  const [company, setCompany] = useState('');
-  const [description, setDescription] = useState('');
-
   const [results, setResults] = useState([]);
+  const [hasStarted, setHasStarted] = useState(false);
 
-  const submitSearch = () => {
+  const submitSearch = (search) => {
 
-    console.log(company)
-    console.log(description)
+    setHasStarted(true)//show the results screen only after button pressed once
+
     // var dummyData = {
     //       "CompanyName": "Trumpet Software Limited",
     //       "Industry": "SaaS, Sales Automation",
@@ -42,8 +29,8 @@ function App() {
     //   }
 
     var requestData = {
-      "CompanyName": company,
-      "Description": description
+      "CompanyName": search.company,
+      "Description": search.description
     }
 
 
@@ -71,123 +58,16 @@ function App() {
   }
 
 
-  const columns = [
-    {
-      field: 'gh_direct_url',
-      headerName: 'GDPR Hub Link',
-      width: 150,
-      editable: false,
-    },
-    {
-      field: 'et_direct_url',
-      headerName: 'GDPR Enforcement Tracker Link',
-      width: 150,
-      editable: false,
-    },
-    {
-      field: 'fine_amount',
-      headerName: 'Fine Amount',
-      type: 'number',
-      width: 110,
-      editable: false,
-    },
-    {
-      field: 'fine_currency',
-      headerName: 'Fine Currency',
-      width: 150,
-      editable: false,
-    }
-  ];
-
 
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>
-          {/* Edit <code>src/App.js</code> and save to reload.. */}
-        </p>
-
-          <TextField 
-            id="company-name" 
-            label="Company Name" 
-            variant="outlined" 
-            value={company}
-            onInput={ e=>setCompany(e.target.value)}
-            />
-          
-          {/* <FormControl fullWidth>
-            <InputLabel id="industry-label">Industry</InputLabel>
-            <Select
-              labelId="industry-label"
-              id="industry"
-              value={industry}
-              label="Industry"
-              // onChange={handleChange}
-            >
-              <MenuItem value={0}>Fintech/Financial Services</MenuItem>
-              <MenuItem value={1}>Medtech/Healthcare</MenuItem>
-              <MenuItem value={2}>eCommerce/Retail</MenuItem>
-              <MenuItem value={3}>Mobility/Logistics</MenuItem>
-              <MenuItem value={4}>Sustainability</MenuItem>
-              <MenuItem value={5}>LegalTech/Regtech</MenuItem>
-              <MenuItem value={6}>PropTech/Real Estate</MenuItem>
-              <MenuItem value={7}>Education/EdTech</MenuItem>
-              <MenuItem value={8}>SaaS</MenuItem>
-              <MenuItem value={9}>Agency/Consultancy</MenuItem>
-              <MenuItem value={10}>Marketing/Advertising</MenuItem>
-
-              {/* add "OTHER" with free text input *//*}
-
-            </Select>
-          </FormControl> */}
-
-          {/* <FormGroup>
-            <FormControlLabel id="b2b" control={<Checkbox />} label="B2B" />
-            <FormControlLabel id="b2c" control={<Checkbox />} label="B2C" />
-          </FormGroup> */}
-
-          <TextField 
-            id="description" 
-            label="Description" 
-            variant="outlined" 
-            value={description}
-            onInput={ e=>setDescription(e.target.value)}
-            />
-
-          <Button id="submit" variant="contained" onClick={submitSearch}>Submit</Button>
-          {/* <p>{JSON.stringify(results)}</p> */}
-
-          <Box sx={{ height: 400, width: '100%' }}>
-            <DataGrid
-              getRowId={(row) =>  row.gh_id + '/' + row.et_id}
-              rows={results}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 5,
-                  },
-                },
-              }}
-              pageSizeOptions={[5]}
-              checkboxSelection
-              disableRowSelectionOnClick
-            />
-          </Box>
-
-        
-        {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-      </header>
+      <div className="search-container">
+        <SearchComponent onSubmit={submitSearch}/>
+      </div>
+      <div className="results-container">
+        { hasStarted && <ResultsComponent data={results}/>}
+      </div>
     </div>
   );
 }
 
-export default App;
