@@ -23,22 +23,34 @@ import { DataGrid } from '@mui/x-data-grid';
 function App() {
   console.log("Start")
   var industry = "";
+  
+
+  const [company, setCompany] = useState('');
+  const [description, setDescription] = useState('');
 
   const [results, setResults] = useState([]);
 
   const submitSearch = () => {
 
-    var dummyData = {
-          "CompanyName": "Trumpet Software Limited",
-          "Industry": "SaaS, Sales Automation",
-          "SalesTarget": "B2B",
-          "Description": "Our company is a digital platform that provides personalized and interactive sales solutions. We offer tools for creating digital sales rooms, enabling businesses to centralize their buyer journeys, track engagement, and streamline marketing and sales processes. Our platform also offers features for auto-personalizing content and real-time notifications, aiming to reduce sales cycle times and increase revenue.",
-      }
+    console.log(company)
+    console.log(description)
+    // var dummyData = {
+    //       "CompanyName": "Trumpet Software Limited",
+    //       "Industry": "SaaS, Sales Automation",
+    //       "SalesTarget": "B2B",
+    //       "Description": "Our company is a digital platform that provides personalized and interactive sales solutions. We offer tools for creating digital sales rooms, enabling businesses to centralize their buyer journeys, track engagement, and streamline marketing and sales processes. Our platform also offers features for auto-personalizing content and real-time notifications, aiming to reduce sales cycle times and increase revenue.",
+    //   }
+
+    var requestData = {
+      "CompanyName": company,
+      "Description": description
+    }
+
 
     fetch("http://localhost:3001", 
       {
           method: "POST", 
-          body: JSON.stringify(dummyData),
+          body: JSON.stringify(requestData),
           mode: 'cors',
           headers: {
               'Content-Type': 'application/json',
@@ -96,9 +108,15 @@ function App() {
           {/* Edit <code>src/App.js</code> and save to reload.. */}
         </p>
 
-          <TextField id="company-name" label="Company Name" variant="outlined" />
+          <TextField 
+            id="company-name" 
+            label="Company Name" 
+            variant="outlined" 
+            value={company}
+            onInput={ e=>setCompany(e.target.value)}
+            />
           
-          <FormControl fullWidth>
+          {/* <FormControl fullWidth>
             <InputLabel id="industry-label">Industry</InputLabel>
             <Select
               labelId="industry-label"
@@ -119,17 +137,23 @@ function App() {
               <MenuItem value={9}>Agency/Consultancy</MenuItem>
               <MenuItem value={10}>Marketing/Advertising</MenuItem>
 
-              {/* add "OTHER" with free text input */}
+              {/* add "OTHER" with free text input *//*}
 
             </Select>
-          </FormControl>
+          </FormControl> */}
 
-          <FormGroup>
+          {/* <FormGroup>
             <FormControlLabel id="b2b" control={<Checkbox />} label="B2B" />
             <FormControlLabel id="b2c" control={<Checkbox />} label="B2C" />
-          </FormGroup>
+          </FormGroup> */}
 
-          <TextField id="description" label="Description" variant="outlined" />
+          <TextField 
+            id="description" 
+            label="Description" 
+            variant="outlined" 
+            value={description}
+            onInput={ e=>setDescription(e.target.value)}
+            />
 
           <Button id="submit" variant="contained" onClick={submitSearch}>Submit</Button>
           {/* <p>{JSON.stringify(results)}</p> */}
