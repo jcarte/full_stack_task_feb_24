@@ -3,7 +3,7 @@
 ## Data
 `cd .\data`
 
-You'll need to install: pandas, BeautifulSoup, numpy
+You'll need to install: pandas, BeautifulSoup, numpy, requests
 `python .\refresh-data.py`
 
 ## Backend
@@ -26,9 +26,10 @@ You'll need to install: pandas, BeautifulSoup, numpy
 - [x] FE - Show data in table
 - [x] BE - Simple search local file
 - [x] FE - Make pretty
+- [x] Data - Use big files
+- [x] Data - Use APIs
 - [ ] BE - Complex search
-- [ ] Data - Use big files
 - [ ] Data - Push to cloud
 - [ ] BE - Pull from cloud
-- [ ] Data - Use APIs
+
 

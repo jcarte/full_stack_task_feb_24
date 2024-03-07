@@ -3,20 +3,6 @@ var router = express.Router();
 var fs = require("fs"),
     json;
 
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   var dummy = {
-//     "method": "GET",
-//     "id": 11,
-//     "title": "perfume Oil",
-//     "description": "Mega Discount, Impression of A...",
-//     "price": 13,
-//     "discountPercentage": 8.4
-//   }
-//   res.send(dummy)
-// });
-
-
 //RECORD
 /*
 {
@@ -56,22 +42,22 @@ function getAllRecord(filename) {
 }
 
 router.post('/', function(req, res) {
-  console.log(req.body)
+  //console.log(req.body)
 
   var results = []
-  var allRecords = getAllRecord('dummy-results.json');
+  var allRecords = getAllRecord('gdpr-records.json');
 
 
-  var companySearchTerms = req.body.CompanyName.length > 0 ? req.body.CompanyName.split(" ") : []
-  var descriptionSearchTerms = req.body.Description.length > 0 ? req.body.Description.split(" ") : []
+  var companySearchTerms = req.body.CompanyName.length > 0 ? req.body.CompanyName.toLowerCase().split(" ") : []
+  var descriptionSearchTerms = req.body.Description.length > 0 ? req.body.Description.toLowerCase().split(" ") : []
 
   for (const record of allRecords) {
 
-    var compsConcat = record.companies.join(" ")
+    var compsConcat = record.companies.join(" ").toLowerCase()
     var isCompanyMatch = companySearchTerms.some(comp => compsConcat.includes(comp));
-    var isDescriptionMatch = descriptionSearchTerms.some(desc => record.summary.includes(desc));
+    var isDescriptionMatch = descriptionSearchTerms.some(desc => record.summary.toLowerCase().includes(desc));
 
-    console.log(record.gh_id + '/' + record.et_id, ", company match: ", isCompanyMatch, ", desc match: ", isDescriptionMatch)
+    //console.log(record.gh_id + '/' + record.et_id, ", company match: ", isCompanyMatch, ", desc match: ", isDescriptionMatch)
 
     if(isCompanyMatch || isDescriptionMatch)
       results.push(record)

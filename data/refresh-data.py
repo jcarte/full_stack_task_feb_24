@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from bs4 import BeautifulSoup
 from datetime import datetime
+import requests
 
 
 """
@@ -57,6 +58,21 @@ def getEnforcementTrackerDF(etData):
 
 
 
+
+"""
+    Takes an array of GH source objects, extracts only the urls from each object if it has one
+    returns array of only url strings
+"""
+def extractSourceUrls(sources):
+    urls = []
+    for source in sources:
+        if 'url' in source:
+            #print(source['url'])
+            urls.append(source['url'])
+    return urls
+
+
+
 """
     Prepares the GH data and returns a pandas dataframe.
     Output Cols:
@@ -82,7 +98,7 @@ def getGDPRHubDF(ghData):
     ghDf['content.jurisdiction'] = ghDf['content.jurisdiction'].apply(lambda x: x.upper()) #uppercase to match other ef data
 
     ghDf['content.sources'] = ghDf['content.sources'].apply(lambda x: [] if x is np.NaN else x)#clean up array if any blanks
-    ghDf['sources'] = ghDf['content.sources'].apply(lambda x: [y['url'] for y in x])#just take the url for each source
+    ghDf['sources'] = ghDf['content.sources'].apply(lambda x: extractSourceUrls(x))#just take the url for each source
     
     ghDf['content.parties'] = ghDf['content.parties'].apply(lambda x: [] if x is np.NaN else x)#clean up array if any blanks
     ghDf['partiesCompanyName'] = ghDf['content.parties'].apply(lambda x: [y['name'] for y in x])#just take the name for each party
@@ -203,10 +219,20 @@ def getJsonDataFromFile(path):
     data = json.load(file)
     return data
 
+def getJsonDataFromApi(url):
+    r = requests.get(url)
+    return r.json()
+
 def run():
+    
     GET_DATA_FROM_APIS = False
-    ENFORCEMENT_TRACKER_LOCAL_PATH = 'enforementtracker_sample_download.json'
-    GDPR_HUB_LOCAL_PATH = 'gdprhub_sample_download.json'
+
+    # ENFORCEMENT_TRACKER_LOCAL_PATH = 'enforementtracker_sample_download.json'
+    # GDPR_HUB_LOCAL_PATH = 'gdprhub_sample_download.json'
+    ENFORCEMENT_TRACKER_LOCAL_PATH = 'enforcementtracker_full_download.json'
+    GDPR_HUB_LOCAL_PATH = 'gdprhub_full_download.json'
+    ENFORCEMENT_TRACKER_API_URL ='https://www.enforcementtracker.com/data4sfk3j4hwe324kjhfdwe.json'
+    GDPR_HUB_API_URL ='https://submit.gdprhub.eu/decisions?search=&offset=0&limit=100000'
 
     #setup pandas
     pd.set_option('display.max_columns', 25)
@@ -215,8 +241,15 @@ def run():
 
     print("Starting")
 
-    etD = getJsonDataFromFile(ENFORCEMENT_TRACKER_LOCAL_PATH)
-    ghD = getJsonDataFromFile(GDPR_HUB_LOCAL_PATH)
+
+    if GET_DATA_FROM_APIS:
+        print("Fetching data from APIs")
+        etD = getJsonDataFromApi(ENFORCEMENT_TRACKER_API_URL)
+        ghD = getJsonDataFromApi(GDPR_HUB_API_URL)
+    else:
+        print("Fetching data from local files")
+        etD = getJsonDataFromFile(ENFORCEMENT_TRACKER_LOCAL_PATH)
+        ghD = getJsonDataFromFile(GDPR_HUB_LOCAL_PATH)
 
     print("Processing Enforcement Tracker Data")
     etDf = getEnforcementTrackerDF(etD)
@@ -230,7 +263,9 @@ def run():
     #print(combinedDf)
 
     print("Exporting to json")
-    combinedDf.to_json('combined.json', orient='records')
+    # etDf.to_json('etDf.json', orient='records')
+    # ghDf.to_json('ghDf.json', orient='records')
+    combinedDf.to_json('gdpr-records.json', orient='records')
 
     print("Finished")
 
