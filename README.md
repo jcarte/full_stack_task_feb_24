@@ -3,16 +3,19 @@
 ## Data
 `cd .\data`
 
+You'll need to install: pandas, BeautifulSoup, numpy
 `python .\refresh-data.py`
 
 ## Backend
 `cd .\backend`
 
+`npm i`
 `npm run dev`
 
 ## Frontend
 `cd .\frontend`
 
+`npm i`
 `npm run start`
 
 

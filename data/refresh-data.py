@@ -5,13 +5,6 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 
-def extract_all_links(html):
-    """intake html string, returns array of all url links found inside."""
-    soup = BeautifulSoup(html, 'html.parser').find_all('a')
-    links = [link.get('href') for link in soup]
-    return links
-
-
 """
     Prepares the EF data and returns a pandas dataframe.
     Output Cols: 
@@ -25,11 +18,9 @@ def extract_all_links(html):
         ETdirectURL
         ETsources
 """
-def getEnforcementTrackerDF(path):
-
-
-    etFile = open(path)
-    etData = json.load(etFile)
+def getEnforcementTrackerDF(etData):
+    # etFile = open(path, encoding="utf-8")
+    # etData = json.load(etFile)
 
     etDf = pd.json_normalize(etData, record_path="data") #json has single property "data" where array sits in
     etDf = etDf.drop(columns=[0])#remove first col as its just blank col for buttons on FE
@@ -65,6 +56,7 @@ def getEnforcementTrackerDF(path):
     return etDf
 
 
+
 """
     Prepares the GH data and returns a pandas dataframe.
     Output Cols:
@@ -78,10 +70,10 @@ def getEnforcementTrackerDF(path):
         GHpartiesCompanyName
         GHdate
 """
-def getGDPRHubDF(path):
+def getGDPRHubDF(ghData):
 
-    ghFile = open(GDPR_HUB_LOCAL_PATH, encoding="utf-8")
-    ghData = json.load(ghFile)
+    # ghFile = open(path, encoding="utf-8")
+    # ghData = json.load(ghFile)
     ghDf = pd.json_normalize(ghData, record_path="rows") #json has single property "rows" where array sits in
 
     ghDf['content.fine.amount'] = pd.to_numeric(ghDf['content.fine.amount'], errors='coerce')#convert fines to numeric and filter for only rows with fines (as task is only fine information)
@@ -128,88 +120,119 @@ def getGDPRHubDF(path):
 
 
 
-
-#setup pandas
-pd.set_option('display.max_columns', 25)
-pd.set_option('display.width', 180)
-pd.set_option('display.max_colwidth', 25)
-
-print("Starting")
-
-ENFORCEMENT_TRACKER_LOCAL_PATH = 'enforementtracker_sample_download.json'
-GDPR_HUB_LOCAL_PATH = 'gdprhub_sample_download.json'
-
-etDf = getEnforcementTrackerDF(ENFORCEMENT_TRACKER_LOCAL_PATH)
-ghDf = getGDPRHubDF(GDPR_HUB_LOCAL_PATH)
-
-#Cut datasets just down to the info needed to join
-etDf2 = etDf[['ETid','ETsources']] #, 'ETfineEUR', 'ETdateOfDecision', 'ETcountry' ]]
-ghDf2 = ghDf[['GHid','GHsources']] #, 'GHfineAmount', 'GHfineCurrency', 'GHdate', 'GHcountry']]
-
-intersectionDf = etDf2.merge(ghDf2, how = 'cross') # cross join on just the cols needed to join and the ids to outer join back
-
-intersectionDf['sourceMatch'] = intersectionDf.apply(lambda x: any([item in x['GHsources'] for item in x['ETsources']]) , axis=1) #are any of the sources in both lists?
-# intersectionDf['fineMatch'] = intersectionDf.apply(lambda x: (x['GHfineCurrency'] == 'EUR') and (x['GHfineAmount'] == x['ETfineEUR']) , axis=1) #do they have the same fine amount?
-# intersectionDf['dateMatch'] = intersectionDf.apply(lambda x: x['ETdateOfDecision'] == x['GHdate'] , axis=1) #are they on the same day? Would do a month/year comparison if had more time
-# intersectionDf['countryMatch'] = intersectionDf.apply(lambda x: x['ETcountry'] == x['GHcountry'] , axis=1) #are they in the same country?
-
-#intersectionDf = intersectionDf[intersectionDf['sourceMatch'] | ( intersectionDf['fineMatch'] & intersectionDf['dateMatch'] & intersectionDf['countryMatch']  )] #Cut down
-intersectionDf = intersectionDf[intersectionDf['sourceMatch']]
-
-combinedDf = pd.merge(intersectionDf, etDf, on='ETid', how='outer')
-combinedDf = pd.merge(combinedDf, ghDf, on='GHid', how='outer')
-
-#replace nan with '' in string cols
-combinedDf[['GHsummary','ETsummary', 'ETsector', 'GHdirectURL', 'ETdirectURL']] = combinedDf[['GHsummary','ETsummary', 'ETsector', 'GHdirectURL', 'ETdirectURL']].fillna('')
-
-#replace nan with [] in list cols
-combinedDf['ETsources_x'] = [ [] if x is np.NaN else x for x in combinedDf['ETsources_x'] ]
-combinedDf['GHsources_x'] = [ [] if x is np.NaN else x for x in combinedDf['GHsources_x'] ]
-combinedDf['GHpartiesCompanyName'] = [ [] if x is np.NaN else x for x in combinedDf['GHpartiesCompanyName'] ]
-
-combinedDf['sources'] = combinedDf.apply(lambda x: list(set(x['ETsources_x']) | set(x['GHsources_x'])),axis=1)
-combinedDf['summary'] = combinedDf.apply(lambda x: x['GHsummary'] + x['ETsummary'],axis=1)
-
-combinedDf['fine_currency'] = combinedDf['GHfineCurrency'].fillna('EUR')
-combinedDf['fine_amount'] = combinedDf['ETfineEUR'].fillna(combinedDf['GHfineAmount'])
-
-combinedDf = combinedDf.rename(columns={
-    'GHdirectURL': 'gh_direct_url',
-    'ETdirectURL': 'et_direct_url',
-    'ETsector': 'sector',
-    'GHpartiesCompanyName': 'companies',
-    'GHid': 'gh_id',
-    'ETid': 'et_id'
-    })
-
-combinedDf = combinedDf[[
-    'gh_direct_url',
-    'et_direct_url',
-    'sources',
-    'companies',
-    'summary',
-    'fine_amount',
-    'fine_currency',
-    'sector',
-    'gh_id',
-    'et_id'
-    ]] #cut down to just the cols to output
-
-print(combinedDf)
-
-combinedDf.to_json('combined.json', orient='records')
-# etDf.to_json('etDf.json', orient='records')#, lines=True)
-# ghDf.to_json('ghDf.json', orient='records')#, lines=True)
+"""intake html string, returns array of all url links found inside."""
+def extract_all_links(html):
+    
+    soup = BeautifulSoup(html, 'html.parser').find_all('a')
+    links = [link.get('href') for link in soup]
+    return links
 
 
-#print(intersectionDf)
 
-#print (etDf)
-#print (ghDf)
+"""
+    Combines the ET and GH datasets, returns a dataframe of just this information:
+        gh_direct_url
+        et_direct_url
+        sources
+        companies
+        summary
+        fine_amount
+        fine_currency
+        sector
+        gh_id
+        et_id
+"""
+def getCombinedDF(etDf, ghDf):
+    #Cut datasets just down to the info needed to join
+    etDf2 = etDf[['ETid','ETsources']] #, 'ETfineEUR', 'ETdateOfDecision', 'ETcountry' ]]
+    ghDf2 = ghDf[['GHid','GHsources']] #, 'GHfineAmount', 'GHfineCurrency', 'GHdate', 'GHcountry']]
 
-#print(df)
+    intersectionDf = etDf2.merge(ghDf2, how = 'cross') # cross join on just the cols needed to join and the ids to outer join back
+
+    intersectionDf['sourceMatch'] = intersectionDf.apply(lambda x: any([item in x['GHsources'] for item in x['ETsources']]) , axis=1) #are any of the sources in both lists?
+    intersectionDf = intersectionDf[intersectionDf['sourceMatch']]
+    ##Was going to do a fuzzy join on date, fine amount, country but ran out of time
+
+    combinedDf = pd.merge(intersectionDf, etDf, on='ETid', how='outer')
+    combinedDf = pd.merge(combinedDf, ghDf, on='GHid', how='outer')
+
+    #replace nan with '' in string cols
+    combinedDf[['GHsummary','ETsummary', 'ETsector', 'GHdirectURL', 'ETdirectURL']] = combinedDf[['GHsummary','ETsummary', 'ETsector', 'GHdirectURL', 'ETdirectURL']].fillna('')
+
+    #replace nan with [] in list cols
+    combinedDf['ETsources_x'] = [ [] if x is np.NaN else x for x in combinedDf['ETsources_x'] ]
+    combinedDf['GHsources_x'] = [ [] if x is np.NaN else x for x in combinedDf['GHsources_x'] ]
+    combinedDf['GHpartiesCompanyName'] = [ [] if x is np.NaN else x for x in combinedDf['GHpartiesCompanyName'] ]
+
+    #concat cols
+    combinedDf['sources'] = combinedDf.apply(lambda x: list(set(x['ETsources_x']) | set(x['GHsources_x'])),axis=1)
+    combinedDf['summary'] = combinedDf.apply(lambda x: x['GHsummary'] + x['ETsummary'],axis=1)
+
+    #cleanup NaNs
+    combinedDf['fine_currency'] = combinedDf['GHfineCurrency'].fillna('EUR')
+    combinedDf['fine_amount'] = combinedDf['ETfineEUR'].fillna(combinedDf['GHfineAmount'])
+
+    #remove unused and rename cols
+    combinedDf = combinedDf.rename(columns={
+        'GHdirectURL': 'gh_direct_url',
+        'ETdirectURL': 'et_direct_url',
+        'ETsector': 'sector',
+        'GHpartiesCompanyName': 'companies',
+        'GHid': 'gh_id',
+        'ETid': 'et_id'
+        })
+
+    combinedDf = combinedDf[[
+        'gh_direct_url',
+        'et_direct_url',
+        'sources',
+        'companies',
+        'summary',
+        'fine_amount',
+        'fine_currency',
+        'sector',
+        'gh_id',
+        'et_id'
+        ]] #cut down to just the cols to output
+    
+    return combinedDf
 
 
-print("Finished")
+def getJsonDataFromFile(path):
+    file = open(path, encoding="utf-8")
+    data = json.load(file)
+    return data
+
+def run():
+    GET_DATA_FROM_APIS = False
+    ENFORCEMENT_TRACKER_LOCAL_PATH = 'enforementtracker_sample_download.json'
+    GDPR_HUB_LOCAL_PATH = 'gdprhub_sample_download.json'
+
+    #setup pandas
+    pd.set_option('display.max_columns', 25)
+    pd.set_option('display.width', 180)
+    pd.set_option('display.max_colwidth', 25)
+
+    print("Starting")
+
+    etD = getJsonDataFromFile(ENFORCEMENT_TRACKER_LOCAL_PATH)
+    ghD = getJsonDataFromFile(GDPR_HUB_LOCAL_PATH)
+
+    print("Processing Enforcement Tracker Data")
+    etDf = getEnforcementTrackerDF(etD)
+
+    print("Processing GDPR Hub Data")
+    ghDf = getGDPRHubDF(ghD)
+
+    print("Combining Data")
+    combinedDf = getCombinedDF(etDf,ghDf)
+
+    #print(combinedDf)
+
+    print("Exporting to json")
+    combinedDf.to_json('combined.json', orient='records')
+
+    print("Finished")
 
 
+run()
