@@ -16,6 +16,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
+import Box from '@mui/material/Box';
+import { DataGrid } from '@mui/x-data-grid';
+
+
 function App() {
   console.log("Start")
   var industry = "";
@@ -53,6 +57,36 @@ function App() {
     });
 
   }
+
+
+  const columns = [
+    {
+      field: 'gh_direct_url',
+      headerName: 'GDPR Hub Link',
+      width: 150,
+      editable: false,
+    },
+    {
+      field: 'et_direct_url',
+      headerName: 'GDPR Enforcement Tracker Link',
+      width: 150,
+      editable: false,
+    },
+    {
+      field: 'fine_amount',
+      headerName: 'Fine Amount',
+      type: 'number',
+      width: 110,
+      editable: false,
+    },
+    {
+      field: 'fine_currency',
+      headerName: 'Fine Currency',
+      width: 150,
+      editable: false,
+    }
+  ];
+
 
   return (
     <div className="App">
@@ -98,7 +132,26 @@ function App() {
           <TextField id="description" label="Description" variant="outlined" />
 
           <Button id="submit" variant="contained" onClick={submitSearch}>Submit</Button>
-          <p>{JSON.stringify(results)}</p>
+          {/* <p>{JSON.stringify(results)}</p> */}
+
+          <Box sx={{ height: 400, width: '100%' }}>
+            <DataGrid
+              getRowId={(row) =>  row.gh_id + '/' + row.et_id}
+              rows={results}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
+                },
+              }}
+              pageSizeOptions={[5]}
+              checkboxSelection
+              disableRowSelectionOnClick
+            />
+          </Box>
+
         
         {/* <a
           className="App-link"
